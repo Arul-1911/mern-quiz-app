@@ -7,7 +7,7 @@ import { useFetchQuestion } from './hooks/Fetch_question';
 
 
 
-function Questions() {
+function Questions() { 
 
    const [checked,setChecked] = useState(undefined);
   const { isLoading , apiData, serverError} = useFetchQuestion()
