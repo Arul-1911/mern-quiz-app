@@ -5,8 +5,6 @@ import data from '../database/data';
 //custom hook
 import { useFetchQuestion } from './hooks/Fetch_question';
 
-
-
 function Questions() { 
 
    const [checked,setChecked] = useState(undefined);
