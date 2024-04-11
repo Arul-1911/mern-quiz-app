@@ -1,10 +1,20 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import '../styles/main.css';
+import { useDispatch } from 'react-redux'
+import { setUserId } from "../Redux/result_reducer";
 
 function Main() {
 
-  const inputRef = useRef(null)
+  const inputRef = useRef(null);
+  const dispatch = useDispatch()
+
+
+  function startQuiz(){
+    if(inputRef.current?.value){
+      dispatch(setUserId(inputRef.current?.value));
+    }
+  }
 
   return (
     <div className="container">
@@ -30,8 +40,8 @@ function Main() {
       </form>
 
       <div className="start">
-        <Link className="btn" to={"quiz"}>
-          Start Quiz{" "}
+        <Link className="btn" to={"/quiz"} onClick={startQuiz}>
+          Start Quiz
         </Link>
       </div>
     </div>
