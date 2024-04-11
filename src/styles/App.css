@@ -47,14 +47,6 @@ body, html{
     padding: 3em;
 }
 
-/* 
-.container .questions .qid{
-  padding: .2em .7em;
-  color: #222222;
-  background-color: #0DFF92;
-  border-radius: 50px;
-} */
-
 .container .grid{
     margin-top: 3em;
     display: grid;
@@ -149,7 +141,6 @@ ul li .check::before {
   margin: auto;
 }
 
-
 input[type=radio]:checked ~ .check {
   border: 5px solid var(--primary-color)
 }
@@ -169,4 +160,22 @@ input[type=radio]:checked ~ .text-primary{
 
 .checked::before{
   background: var(--primary-color)
+}
+
+/* Adjust grid for smaller screens */
+@media screen and (max-width:750px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    overflow: hidden;
+    max-width: 280px;
+    margin-top: -10px;
+    height: auto;
+  }
+
+  .container .questions{
+    padding: 1px;
+}
+
 }

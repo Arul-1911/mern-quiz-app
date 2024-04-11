@@ -19,14 +19,23 @@ export const updateResult = (index) => async (dispatch) => {
 }
 
 
-//insert user data
 export const usePublishResult = (resultData) => {
+  // Check if resultData is defined
+  if (!resultData) {
+    console.error("resultData is undefined");
+    return; // Return early if resultData is undefined
+  }
+
   const { result, username } = resultData;
+
   (async () => {
     try {
-        if (!result || !username) {
-          throw new Error("Couldn't get Result");
-        }
+      // Check if result is not empty and username is defined
+      if (!result || !username) {
+        throw new Error("Result or username is undefined");
+      }
+
+      // Proceed with data submission logic
       await postServerData(
         `${backend_url}/api/result`,
         resultData,

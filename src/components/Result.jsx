@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import '../styles/result.css';
 import { Link } from 'react-router-dom';
 import ResultTable from './ResultTable';
@@ -21,9 +21,7 @@ function Result() {
     result: { result, userId },
   } = useSelector((state) => state);
 
-  useEffect(() => {
-    console.log(flag);
-  });
+
 
   const totalPoints = queue.length * 10;
   const attempts = attemps_Number(result);
@@ -36,8 +34,9 @@ function Result() {
     username: userId,
     attempts,
     points: earnPoints,
-    achived: flag ? "Passed" : "Failed",
-  });
+    achieved: flag ? "Passed":"Failed"});
+
+
 
   function onRestart() {
     disPatch(resetAllAction());
@@ -51,7 +50,7 @@ function Result() {
       <div className="result flex-center">
         <div className="flex">
           <span>Username</span>
-          <span className="bold">Daily</span>
+          <span className="bold">{userId}</span>
         </div>
         <div className="flex">
           <span>Total Quiz Points : </span>
@@ -75,7 +74,7 @@ function Result() {
             style={{ color: `${flag ? "#2aff95" : "#ff2a66"}` }}
             className="bold"
           >
-            {flag ? "Pass" : "Fail"}
+            {flag ?"Passed":"Failed"}
           </span>
         </div>
       </div>

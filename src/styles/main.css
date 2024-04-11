@@ -32,3 +32,23 @@
     border-radius: 3px;
     font-size: 1em;
 }
+
+@media screen and (max-width: 768px) {
+    .container ol li {
+        font-size: 1.2em;
+    }
+
+    #form .userid {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .container ol li {
+        font-size: 1em;
+    }
+
+    #form .userid {
+        width: 90%;
+    }
+}
