@@ -24,7 +24,9 @@ export const usePublishResult = (resultData) => {
   const { result, username } = resultData;
   (async () => {
     try {
-       if (!username) throw new Error("Couldn't get Result");
+        if (!result || !username) {
+          throw new Error("Couldn't get Result");
+        }
       await postServerData(
         `${backend_url}/api/result`,
         resultData,
