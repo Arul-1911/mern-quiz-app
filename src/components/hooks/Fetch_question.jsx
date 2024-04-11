@@ -1,36 +1,47 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as Action from "../../Redux/question_reducer";
-import data, { answers } from "../../database/data";
+import { backend_url } from "../../URL";
+import { getServerData } from "../../helper/helper";
+
 
 export const useFetchQuestion = () => {
-  const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
-  const [apiData, setApiData] = useState([]);
-  const [serverError, setServerError] = useState(null);
+   const dispatch = useDispatch();
+   const [getData, setGetData] = useState({
+     isLoading: false,
+     apiData: [],
+     serverError: null,
+   });
 
-  useEffect(() => {
-    setIsLoading(true);
+   useEffect(() => {
+     setGetData((prev) => ({ ...prev, isLoading: true }));
 
-    (async () => {
-      try {
-        let question = await data;
+     /** async function fetch backend data */
+     (async () => {
+       try {
+         const [{ questions, answers }] = await getServerData(
+           `${backend_url}/api/questions`,
+           (data) => data
+         );
+         console.log({ questions, answers });
 
-        if (question.length > 0) {
-          setIsLoading(false);
-          setApiData({ question, answers });
-          dispatch(Action.startExamAction({ question, answers }));
-        } else {
-          throw new Error("No questions available");
-        }
-      } catch (error) {
-        setIsLoading(false);
-        setServerError(error);
-      }
-    })();
-  }, [dispatch]);
+         if (questions.length > 0) {
+           setGetData((prev) => ({ ...prev, isLoading: false }));
+           setGetData((prev) => ({ ...prev, apiData: questions }));
 
-  return { isLoading, apiData, serverError };
+           /** dispatch an action */
+           dispatch(Action.startExamAction({ question: questions, answers }));
+         } else {
+           throw new Error("No Question Avalibale");
+         }
+       } catch (error) {
+         setGetData((prev) => ({ ...prev, isLoading: false }));
+         setGetData((prev) => ({ ...prev, serverError: error }));
+       }
+     })();
+   }, [dispatch]);
+
+   return [getData, setGetData];
 };
 
 //move action dispatch next question function

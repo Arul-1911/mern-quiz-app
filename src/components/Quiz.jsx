@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import Questions from './Questions';
 import {MoveNextQuestion , MovePrevQuestion} from'./hooks/Fetch_question';
-import { pushAnswer } from './hooks/setResult';
+import { pushAnswer } from "./hooks/setResult";
 import { Navigate } from 'react-router-dom'
 
 //redux store import
