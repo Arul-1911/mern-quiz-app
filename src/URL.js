@@ -1,1 +1,1 @@
-export  const backend_url = 'http://localhost:5000'
+export  const backend_url = "https://mern-quiz-app-backend-1.onrender.com"
