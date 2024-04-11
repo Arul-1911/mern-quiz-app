@@ -53,6 +53,23 @@ body, html{
     grid-template-columns: 1fr 1fr;
 }
 
+.loading-screen {
+  position: fixed; /* Position fixed to keep it centered */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  z-index: 9999; /* Ensure it's on top of other content */
+}
+
+
 
 .container .btn{
     padding: .2em 1.7em;
