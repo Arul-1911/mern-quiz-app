@@ -22,7 +22,7 @@ function Quiz() {
     // Simulated async fetch of questions
     setTimeout(() => {
       setLoading(false); // Set loading to false when questions are fetched
-    }, 1000); // Adjust the timeout as needed
+    }, 8000); // Adjust the timeout as needed
   }, []);
 
   // Next button event handler
